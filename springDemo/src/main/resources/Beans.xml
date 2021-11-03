@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="employee" class="com.sapiens.springDemo.Employee">
+        <property name="ID" value="1"/>
+        <property name="name" value="Akaber"/>
+        <property name="age" value="30"/>
+        <property name="gender" value="female"/>
+    </bean>
+
+    <bean id="address" class="com.sapiens.springDemo.Address">
+        <property name="city" value="Haifa"/>
+        <property name="state" value="Isreal"/>
+        <property name="country" value="Isreal"/>
+        <property name="pincode" value="76557"/>
+        <property name="po_box" value="2345"/>
+    </bean>
+
+    <bean id="contact" class="com.sapiens.springDemo.Contact">
+        <property name="primary_mobile" value="064357"/>
+        <property name="Secondary_mobile" value="07255"/>
+        <property name="emergency_number" value="144"/>
+        <property name="email" value="user@gmail.com"/>
+        <property name="off_email" value="user1@gmail.com"/>
+    </bean>
+
+    <bean id="officialDetails" class="com.sapiens.springDemo.OfficialDetails">
+        <property name="edu_qualification" value="fullStack"/>
+        <property name="percentage" value="100"/>
+        <property name="designation" value="developer"/>
+        <property name="experience_years" value="1"/>
+        <property name="company_name" value="Sapiens"/>
+    </bean>
+
+
+</beans>
