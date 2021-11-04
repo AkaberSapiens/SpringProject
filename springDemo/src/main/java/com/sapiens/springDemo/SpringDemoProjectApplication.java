@@ -17,6 +17,7 @@ public class SpringDemoProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFrameworkDemoApplication.class, args);
+
 		System.out.println("Setter based DI Demo");
 		AnnotationConfigApplicationContext configApplicationContext1 =
 				new AnnotationConfigApplicationContext(SetterBasedDI.class);

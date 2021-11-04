@@ -1,3 +1,5 @@
+package com.sapiens.springDemo.di;
+
 import com.sapiens.springDemo.di.AccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
