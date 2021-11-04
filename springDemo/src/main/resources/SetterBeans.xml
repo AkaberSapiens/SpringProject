@@ -7,45 +7,16 @@
 
 
     <bean id="activeMqMessaging" class="com.sapiens.springDemo.SetterDI.ActiveMQMessaging" />
+    <bean id="dynamicMqMessaging" class="com.sapiens.springDemo.SetterDI.DynamicMQMessaging" />
+    <bean id="staticMqMessaging" class="com.sapiens.springDemo.SetterDI.StaticMQMessaging" />
+    <bean id="uniqueMqMessaging" class="com.sapiens.springDemo.SetterDI.UniqueMQMessaging" />
+
+
 
     <bean id="communication1" class="com.sapiens.springDemo.SetterDI.Communication">
         <property name="messaging">
             <ref bean="activeMqMessaging" />
         </property>
     </bean>
-
-
-
-
-    <bean id="dynamicMqMessaging" class="com.sapiens.springDemo.SetterDI.DynamicMQMessaging" />
-
-    <bean id="communication2" class="com.sapiens.springDemo.SetterDI.Communication">
-        <property name="messaging">
-            <ref bean="dynamicMqMessaging" />
-        </property>
-    </bean>
-
-
-
-
-    <bean id="staticMqMessaging" class="com.sapiens.springDemo.SetterDI.StaticMQMessaging" />
-
-    <bean id="communication3" class="com.sapiens.springDemo.SetterDI.Communication">
-        <property name="messaging">
-            <ref bean="staticMqMessaging" />
-        </property>
-    </bean>
-
-
-
-
-    <bean id="uniqueMqMessaging" class="com.sapiens.springDemo.SetterDI.UniqueMQMessaging" />
-
-    <bean id="communication4" class="com.sapiens.springDemo.SetterDI.Communication">
-        <property name="messaging">
-            <ref bean="uniqueMqMessaging" />
-        </property>
-    </bean>
-
 
 </beans>
