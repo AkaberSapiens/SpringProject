@@ -1,44 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <context:component-scan base-package="com.sapiens.springDemo.DeclarativeTM.serviceImpl, com.sapiens.springDemo.DeclarativeTM.daoImpl"/>
+    <context:property-placeholder location="application.properties"/>
 
-    <context:component-scan base-package="com.sapiens.springDemo.DAO"/>
+    <bean id="dataSourceBean" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="initialSize" value="${pool.initialSize}"/>
+    </bean>
 
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceBean"/>
+    </bean>
 
-<!--    <bean id="employee" class="com.sapiens.springDemo.Employee">-->
-<!--        <property name="ID" value="1"/>-->
-<!--        <property name="name" value="Akaber"/>-->
-<!--        <property name="age" value="30"/>-->
-<!--        <property name="gender" value="female"/>-->
-<!--    </bean>-->
+    <bean id="jdbcTemplateBean" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref = "dataSourceBean"/>
+    </bean>
 
-<!--    <bean id="address" class="com.sapiens.springDemo.Address">-->
-<!--        <property name="city" value="Haifa"/>-->
-<!--        <property name="state" value="Isreal"/>-->
-<!--        <property name="country" value="Isreal"/>-->
-<!--        <property name="pincode" value="76557"/>-->
-<!--        <property name="po_box" value="2345"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="contact" class="com.sapiens.springDemo.Contact">-->
-<!--        <property name="primary_mobile" value="064357"/>-->
-<!--        <property name="Secondary_mobile" value="07255"/>-->
-<!--        <property name="emergency_number" value="144"/>-->
-<!--        <property name="email" value="user@gmail.com"/>-->
-<!--        <property name="off_email" value="user1@gmail.com"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="officialDetails" class="com.sapiens.springDemo.OfficialDetails">-->
-<!--        <property name="edu_qualification" value="fullStack"/>-->
-<!--        <property name="percentage" value="100"/>-->
-<!--        <property name="designation" value="developer"/>-->
-<!--        <property name="experience_years" value="1"/>-->
-<!--        <property name="company_name" value="Sapiens"/>-->
-<!--    </bean>-->
-
-
-
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="txManager"/>
 </beans>
 
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xmlns:util="http://www.springframework.org/schema/util"-->
+<!--       xmlns:tx="http://www.springframework.org/schema/tx"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+<!--                           http://www.springframework.org/schema/beans/spring-beans.xsd-->
+<!--                           http://www.springframework.org/schema/tx-->
+<!--                           https://www.springframework.org/tx/spring-tx.xsd ">-->
+<!--    <tx:annotation-driven transaction-manager="txnManagerBean" proxy-target-class="true"/>-->
+
+<!--    <bean id="EmployeeDAOBean" class="com.sapiens.springDemo.ProgramaticTM.EmployeeDAO">-->
+<!--        <property name="jdbcTemplate" ref="jdbcTemplateBean"/>-->
+<!--        <property name="transactionTemplate" ref="transactionTemplateBean"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="jdbcTemplateBean" class="org.springframework.jdbc.core.JdbcTemplate">-->
+<!--        <property name="dataSource" ref = "dataSourceBean"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="transactionTemplateBean" class="org.springframework.transaction.support.TransactionTemplate">-->
+<!--        <property name="transactionManager" ref="txnManagerBean"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="txnManagerBean" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSourceBean"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/employee"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="root"/>-->
+<!--    </bean>-->
+
+<!--</beans>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+        <!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+        <!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"-->
+        <!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd-->
+        <!--                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">-->
+        <!--    <context:component-scan base-package="com.sapiens.SpringDemo.DAO"/>-->
+        <!--</beans>-->
+
+        <!--    <bean id="activeMqMessaging" class="com.sapiens.SpringDemo.setterDI.ActiveMQMessaging" />-->
+        <!--    <bean id="dynamicMQMessaging" class="com.sapiens.SpringDemo.setterDI.DynamicMQMessaging" />-->
+        <!--    <bean id="staticMQMessaging" class="com.sapiens.SpringDemo.setterDI.StaticMQMessaging" />-->
+        <!--    <bean id="uniqueMQMessaging" class="com.sapiens.SpringDemo.setterDI.UniqueMQMessaging" />-->
+
+
+        <!--    <bean id="communication1" class="com.sapiens.SpringDemo.setterDI.Communication">-->
+        <!--        <property name="messaging">-->
+        <!--            <ref bean="activeMqMessaging" />-->
+        <!--        </property>-->
+        <!--    </bean>-->
+
+        <!--    <bean id="communication2" class="com.sapiens.SpringDemo.setterDI.Communication">-->
+        <!--        <property name="messaging">-->
+        <!--            <ref bean="dynamicMQMessaging" />-->
+        <!--        </property>-->
+        <!--    </bean>-->
+
+        <!--    <bean id="communication3" class="com.sapiens.SpringDemo.setterDI.Communication">-->
+        <!--        <property name="messaging">-->
+        <!--            <ref bean="staticMQMessaging" />-->
+        <!--        </property>-->
+        <!--    </bean>-->
+
+        <!--    <bean id="communication4" class="com.sapiens.SpringDemo.setterDI.Communication">-->
+        <!--        <property name="messaging">-->
+        <!--            <ref bean="uniqueMQMessaging" />-->
+        <!--        </property>-->
+        <!--    </bean>-->
+        <!--</beans>-->
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+        <!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+        <!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+        <!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+        <!--       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">-->
+
+        <!--    <bean id ="employee" class="com.sapiens.SpringDemo.ioc.Employee">-->
+        <!--        <property name="id" value="231"/>-->
+        <!--        <property name="name" value="Scooby"/>-->
+        <!--        <property name="age" value="33"/>-->
+        <!--        <property name="gender" value="Male"/>-->
+        <!--    </bean>-->
+
+
+        <!--    <bean id ="address" class="com.sapiens.SpringDemo.ioc.Address">-->
+        <!--        <property name="city" value="New York"/>-->
+        <!--        <property name="state" value="New York"/>-->
+        <!--        <property name="country" value="United States"/>-->
+        <!--        <property name="pincode" value="10001"/>-->
+        <!--        <property name="PoBoxNumber" value="3421"/>-->
+        <!--    </bean>-->
+
+        <!--    <bean id ="contact" class="com.sapiens.SpringDemo.ioc.Contact">-->
+        <!--        <property name="primaryMobileNo" value="03-24536"/>-->
+        <!--        <property name="secondaryMobileNo" value="03-122346"/>-->
+        <!--        <property name="emergencyContactNo" value="03-72412"/>-->
+        <!--        <property name="emailId" value="Scoopy@example.com"/>-->
+        <!--        <property name="OfficialMailId" value="Scoopy123@example.com"/>-->
+        <!--    </bean>-->
+
+        <!--    <bean id ="officialDetails" class="com.sapiens.SpringDemo.ioc.OfficialDetails">-->
+        <!--        <property name="eduQualification" value="Master"/>-->
+        <!--        <property name="percentage" value="83.7"/>-->
+        <!--        <property name="Designation" value="Organizer"/>-->
+        <!--        <property name="yearsOfExperience" value="8"/>-->
+        <!--        <property name="currentCompanyName" value="example"/>-->
+        <!--    </bean>-->
+
+        <!--</beans>-->
