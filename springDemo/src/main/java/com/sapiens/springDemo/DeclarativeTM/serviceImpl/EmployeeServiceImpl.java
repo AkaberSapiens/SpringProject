@@ -1,5 +1,6 @@
 package com.sapiens.springDemo.DeclarativeTM.serviceImpl;
-import com.sapiens.springDemo.DAO.dao.EmployeeDAO;
+
+import com.sapiens.springDemo.DeclarativeTM.dao.EmployeeDAO;
 import com.sapiens.springDemo.DeclarativeTM.model.Employee;
 import com.sapiens.springDemo.DeclarativeTM.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
