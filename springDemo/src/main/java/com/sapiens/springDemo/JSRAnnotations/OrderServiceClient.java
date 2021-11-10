@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 
 public class OrderServiceClient {
-    @Resource(name="OrderServiceA")
+    @Resource(name="OrderServiceB")
 
     private OrderService orderService;
 

@@ -1,6 +1,5 @@
 package com.sapiens.springDemo.SpringJPA;
 
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
